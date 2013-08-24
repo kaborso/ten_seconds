@@ -1,0 +1,28 @@
+{
+  "name": "ten-seconds",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kalikborso/ten_seconds.git"
+  },
+  "dependencies": {
+    "voxel": "0.3.1",
+    "voxel-engine": "~0.18.0",
+    "voxel-highlight": "0.0.9",
+    "voxel-critter": "0.1.1",
+    "voxel-player": "0.1.0",
+    "voxel-walk": "0.0.5",
+    "aabb-3d":"0.0.0",
+    "spatial-events":"0.0.1",
+    "spatial-trigger":"0.0.0"
+  },
+  "devDependencies": {
+    "browserify": "1.17.3",
+    "coffeeify": "0.4.1",
+    "beefy": "0.0.11"
+  },
+  "scripts": {
+    "start": "beefy src/index.coffee --open -- -t coffeeify",
+    "build": "browserify -t coffeeify src/index.coffee > public/index.js"
+  }
+}
