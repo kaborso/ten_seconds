@@ -23,6 +23,6 @@
   },
   "scripts": {
     "start": "beefy src/index.coffee --open -- -t coffeeify",
-    "build": "browserify -t coffeeify src/index.coffee > public/index.js"
+    "test": "browserify -t coffeeify src/index.coffee > public/index.js"
   }
 }
