@@ -10,6 +10,7 @@
     "voxel-engine": "~0.18.0",
     "voxel-highlight": "0.0.9",
     "voxel-critter": "0.1.1",
+    "voxel-fly": "~0.1.0",
     "voxel-player": "0.1.0",
     "voxel-walk": "0.0.5",
     "aabb-3d":"0.0.0",
@@ -18,11 +19,12 @@
   },
   "devDependencies": {
     "browserify": "1.17.3",
+    "jquery-browserify":"git://github.com/zipp/jquery-browserify.git",
     "coffeeify": "0.4.1",
     "beefy": "0.0.11"
   },
   "scripts": {
-    "start": "beefy src/index.coffee --open -- -t coffeeify",
-    "test": "browserify -t coffeeify src/index.coffee > public/index.js"
+    "start": "beefy src/index.coffee --open -- -r jquery-browserify:jQuery -t coffeeify",
+    "test": "cp -r characters/ public && browserify -r jquery-browserify:jQuery -t coffeeify src/index.coffee > public/index.js"
   }
 }
