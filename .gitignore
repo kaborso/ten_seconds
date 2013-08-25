@@ -1,5 +1,6 @@
 ideas
 plans
-characters/_odds_and_ends
+_odds_and_ends
 node_modules/
 *.js
+public/characters/
