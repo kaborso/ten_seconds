@@ -33,22 +33,25 @@ game.flyer = createFlyer(target)
 
 
 # move to and export from module
+class Scene
+  constructor: (@game, opts = {}) ->
+
+# move to and export from module
 class Character
   constructor: (@game, @name) ->
-    @characterPath = @game.characterPath || "characters/"
+    @characterPath = "#{ @game.charactersPath || "characters/" }#{ @name }"
     $.ajax
-      url: "/#{@characterPath}#{@name}.json",
+      url: "/#{ @characterPath }.json",
       dataType: "json",
       success: (data) =>
         @faces = data.faces
         @manifest()
-  expression: (num = 0) -> "#{@characterPath}#{@name}/#{@faces[num]}.png"
+  expression: (num = 0) -> "#{ @characterPath }/#{ @faces[num] }.png"
   register: ->
-    if @game.actors
-      @game.actors.push(this)
-    else
-      @game.actors = [this]
+    @game.characters ||= {}
+    @game.characters["#{@name}"] = this
   manifest: (game) ->
+    @register()
     @game.once 'tick', =>
       @img = new Image()
       @img.onload = =>
@@ -61,6 +64,12 @@ class Character
 new Character(game, 'kelly')
 new Character(game, 'jasper')
 new Character(game, 'tad')
+
+fetch = (resource, andThen) ->
+  $.ajax
+    url: "/#{ resource }.json",
+    dataType: "json",
+    success: andThen
 
 game.paused = false
 

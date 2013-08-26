@@ -25,6 +25,6 @@
   },
   "scripts": {
     "start": "beefy src/index.coffee --open -- -r jquery-browserify:jQuery -t coffeeify",
-    "test": "cp -r characters/ public && browserify -r jquery-browserify:jQuery -t coffeeify src/index.coffee > public/index.js"
+    "test": "cp -r characters public && browserify -r jquery-browserify:jQuery -t coffeeify src/index.coffee > public/index.js"
   }
 }
