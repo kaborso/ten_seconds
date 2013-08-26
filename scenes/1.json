@@ -1,0 +1,64 @@
+{
+  "name": "locked",
+  "characters": ["tad"],
+  "blocking": {
+    "tad": {
+      "position": {
+        "x": 1,
+        "y": 4,
+        "z": 1
+      }
+    }
+  },
+  "staging": {
+    "door": {
+      "position": {
+        "x": 2,
+        "y": 4,
+        "z": 2
+      }
+    }
+  },
+  "action": {
+    "tad": [
+      [1, "face", {}] // time & action & arbitrary data (target, priority, etc.)
+    ]
+  },
+  "dialogue": {
+    "tad": [
+      [9, "...", {}] // time & line & arbitrary data (target, priority, etc.)
+    ]
+  },
+  "emote": {
+    "tad": [
+      [5, "what", {}] // time & face & arbitrary data (target, priority, etc.)
+    ]
+  },
+  "interaction": { // Interactions are also definable in prop/character's json
+    "knock": {
+      "target": "door",
+      "response": [
+        {
+          "trigger": "sound",
+          "data": {},
+          "override": true // Override the knock interaction defined in this prop's json
+        }
+      ]
+    },
+    "open": {
+      "target": "door",
+      "response": [
+        {
+          "trigger": "sound",
+          "data": {},
+          "override": false
+        },
+        {
+          "trigger": "message",
+          "data": {},
+          "override": false
+        },
+      ]
+    }
+  }
+}
