@@ -1,5 +1,5 @@
 class Resource
-  constructor: (@game, @name) ->
+  constructor: (@game, @name, @ready) ->
     @fetch @resourcePath(), @onLoad
 
   fetch: (resource, andThen) ->

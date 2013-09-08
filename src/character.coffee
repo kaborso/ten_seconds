@@ -1,9 +1,10 @@
+async = require('async')
 {Critter, load} = require('voxel-critter')
 Critter.prototype.load = load
 {Resource} = require('./resource.coffee')
 
 class Character extends Resource
-  constructor: (@game, @name) ->
+  constructor: (@game, @name, @ready) ->
     @characterPath = "#{ @game.charactersPath || "resources/characters/" }#{ @name }"
     $.ajax
       url: "/#{ @characterPath }.json",
@@ -15,8 +16,8 @@ class Character extends Resource
   register: ->
     @game.characters ||= {}
     @game.characters["#{@name}"] = this
+    @ready()
   manifest: (game) ->
-    @register()
     @game.once 'tick', =>
       @img = new Image()
       @img.onload = =>
@@ -25,11 +26,17 @@ class Character extends Resource
         @char.position.y = 4
         @char.position.z = 4 * Math.random()
       @img.src = @expression()
+    @register()
 
 Character::load_all = (game, ready) ->
   Character::fetch "characters", (data) =>
     {characters} = data
-    new Character(game, character) for character in characters
-    ready(null, game)
+    provideGame = (provide) -> provide(null, game)
+    addCharFns = ((game, nextChar) ->
+                  new Character game, character, =>
+                    nextChar(null, game)) for character in characters
+    addCharacters = [provideGame].concat(addCharFns)
+    async.waterfall addCharacters, (err, game) ->
+      ready(null, game)
 
 module.exports.Character = Character
