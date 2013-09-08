@@ -3,7 +3,7 @@ Critter.prototype.load = load
 
 class Character
   constructor: (@game, @name) ->
-    @characterPath = "#{ @game.charactersPath || "characters/" }#{ @name }"
+    @characterPath = "#{ @game.charactersPath || "resources/characters/" }#{ @name }"
     $.ajax
       url: "/#{ @characterPath }.json",
       dataType: "json",

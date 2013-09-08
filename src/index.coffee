@@ -35,6 +35,7 @@ new Character(game, 'kelly')
 new Character(game, 'jasper')
 new Character(game, 'tad')
 
+new Scene(game, 1)
 game.paused = false
 
 # container = document.body
