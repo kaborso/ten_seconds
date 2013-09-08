@@ -3,4 +3,4 @@ plans
 _odds_and_ends
 node_modules/
 *.js
-public/characters/
+public/resources/
