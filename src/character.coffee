@@ -23,12 +23,13 @@ class Character extends Resource
       @img.onload = =>
         @char = new Critter(@game, @img)
         @char.position.x = 4 * Math.random()
-        @char.position.y = 4
+        @char.position.y = 2
         @char.position.z = 4 * Math.random()
       @img.src = @expression()
     @register()
 
 Character::load_all = (game, ready) ->
+  return ready(null, game) # come back to this later
   Character::fetch "characters", (data) =>
     {characters} = data
     provideGame = (provide) -> provide(null, game)

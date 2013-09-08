@@ -12,7 +12,7 @@ opts =
   chunkDistance: 2,
   fogDisabled: false,
   lightsDisabled: true,
-  materials: ['#000'],
+  materials: ['#000', '#fff', '#fefefe', '#fffccc', '#ddd'],
   materialFlatColor: true,
   skyColor: 0x0,
   worldOrigin: [0, 0, 0],

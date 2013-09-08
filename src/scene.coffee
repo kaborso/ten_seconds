@@ -4,6 +4,7 @@ async = require('async')
 class Scene extends Resource
   resourcePath: -> "#{ @game.scenePath || "scenes/" }#{ @name }"
   onLoad: (scene) =>
+    {@staging, @blocking, @characters} = scene
     @game.scenes ||= []
     @game.scenes.push this
     @ready()
