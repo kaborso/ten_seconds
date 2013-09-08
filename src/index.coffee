@@ -31,11 +31,20 @@ target = game.controls.target()
 game.flyer = createFlyer(target)
 
 # for learning lol
+# rewrite character loading
 new Character(game, 'kelly')
 new Character(game, 'jasper')
 new Character(game, 'tad')
 
-new Scene(game, 1)
+# start = async.compose(Character::load_all, Scene::load_all)
+# start game, (world) ->
+
+
+start = (game) ->
+Scene::load_all game, start
+
+
+
 game.paused = false
 
 # container = document.body
