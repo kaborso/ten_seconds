@@ -1,7 +1,8 @@
 {Critter, load} = require('voxel-critter')
 Critter.prototype.load = load
+{Resource} = require('./resource.coffee')
 
-class Character
+class Character extends Resource
   constructor: (@game, @name) ->
     @characterPath = "#{ @game.charactersPath || "resources/characters/" }#{ @name }"
     $.ajax
@@ -24,5 +25,11 @@ class Character
         @char.position.y = 4
         @char.position.z = 4 * Math.random()
       @img.src = @expression()
+
+Character::load_all = (game, ready) ->
+  Character::fetch "characters", (data) =>
+    {characters} = data
+    new Character(game, character) for character in characters
+    ready(null, game)
 
 module.exports.Character = Character

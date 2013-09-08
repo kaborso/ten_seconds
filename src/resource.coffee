@@ -1,9 +1,11 @@
 class Resource
   constructor: (@game, @name) ->
-    $.ajax
-      url: "/resources/#{ @resourcePath() }.json",
-      dataType: "json",
-      success: @onLoad
+    @fetch @resourcePath(), @onLoad
 
+  fetch: (resource, andThen) ->
+    $.ajax
+      url: "/resources/#{ resource }.json",
+      dataType: "json",
+      success: andThen
 
 module.exports.Resource = Resource

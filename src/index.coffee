@@ -3,6 +3,7 @@ fly = require('voxel-fly')
 player = require('voxel-player')
 {Character} = require('./character.coffee')
 {Scene} = require('./scene.coffee')
+async = require('async')
 require('jQuery')
 
 opts =
@@ -32,16 +33,17 @@ game.flyer = createFlyer(target)
 
 # for learning lol
 # rewrite character loading
-new Character(game, 'kelly')
-new Character(game, 'jasper')
-new Character(game, 'tad')
+# new Character(game, 'kelly')
+# new Character(game, 'jasper')
+# new Character(game, 'tad')
 
-# start = async.compose(Character::load_all, Scene::load_all)
-# start game, (world) ->
+init = (prepare) => prepare(null, game)
+async.waterfall [init, Character::load_all, Scene::load_all], (err, game) ->
+  # almost there!
 
 
-start = (game) ->
-Scene::load_all game, start
+# start = (game) ->
+# Scene::load_all game, start
 
 
 

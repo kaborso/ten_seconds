@@ -7,9 +7,9 @@ class Scene extends Resource
     @game.scenes.push this
 
 Scene::load_all = (game, ready) ->
-  @fetch "scenes", (data) =>
+  Scene::fetch "scenes", (data) =>
     {scenes} = data
     new Scene(game, scene) for scene in scenes
-    ready(game)
+    ready(null, game)
 
 module.exports.Scene = Scene

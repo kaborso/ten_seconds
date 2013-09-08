@@ -15,7 +15,8 @@
     "voxel-walk": "0.0.5",
     "aabb-3d":"0.0.0",
     "spatial-events":"0.0.1",
-    "spatial-trigger":"0.0.0"
+    "spatial-trigger":"0.0.0",
+    "async":"0.2.9"
   },
   "devDependencies": {
     "browserify": "1.17.3",
