@@ -4,7 +4,7 @@ Critter.prototype.load = load
 {Resource} = require('./resource.coffee')
 
 class Character extends Resource
-  constructor: (@game, @name, @ready) ->
+  constructor: (@game, @name, @ready = ->) ->
     @characterPath = "#{ @game.charactersPath || "resources/characters/" }#{ @name }"
     $.ajax
       url: "/#{ @characterPath }.json",
