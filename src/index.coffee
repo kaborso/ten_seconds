@@ -1,12 +1,13 @@
 createGame = require('voxel-engine')
-fly = require('voxel-fly')
-player = require('voxel-player')
-{Character} = require('./character.coffee')
-{Scene} = require('./scene.coffee')
-{World} = require('./world.coffee')
+{debug} = require('./debug.coffee')
 async = require('async')
 require('jQuery')
 
+{Character} = require('./character.coffee')
+{Scene} = require('./scene.coffee')
+{World} = require('./world.coffee')
+
+# put configuration somewhere else
 opts =
   generate: (x, y, z) -> y == 1 ? 1 : 0,
   chunkDistance: 2,
@@ -20,17 +21,7 @@ opts =
     discreteFire: true
 
 game = createGame(opts)
-
-# For debugging
-createPlayer = player(game)
-avatar = createPlayer()
-avatar.possess()
-avatar.yaw.position.set(2, 4, 6)
-
-# For debugging
-createFlyer = fly(game)
-target = game.controls.target()
-game.flyer = createFlyer(target)
+debug game
 
 init = (prepare) => prepare(null, game)
 async.waterfall [init, Character::load_all, Scene::load_all], (err, game) ->

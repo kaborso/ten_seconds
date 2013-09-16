@@ -4,7 +4,8 @@ Critter.prototype.load = load
 {Resource} = require('./resource.coffee')
 
 class Character extends Resource
-  constructor: (@game, @name, @ready = ->) ->
+  constructor: (@game, data, @ready = ->) ->
+    {@name, @position} = data
     @characterPath = "#{ @game.charactersPath || "resources/characters/" }#{ @name }"
     $.ajax
       url: "/#{ @characterPath }.json",
@@ -22,9 +23,8 @@ class Character extends Resource
       @img = new Image()
       @img.onload = =>
         @char = new Critter(@game, @img)
-        @char.position.x = 4 * Math.random()
-        @char.position.y = 2
-        @char.position.z = 4 * Math.random()
+        {x, y, z} = @position
+        @char.position.set x, y, z
       @img.src = @expression()
     @register()
 

@@ -12,7 +12,7 @@ class World
     @block()
 
   block: ->
-    new Character(@game, name) for name in @scene.characters
+    new Character(@game, character) for character in @scene.blocking
 
   stage: ->
     new Thing(@game, thing) for thing in @scene.staging

@@ -1,15 +1,15 @@
 {
   "name": "locked",
-  "characters": ["kelly"],
-  "blocking": {
-    "tad": {
+  "blocking": [
+    {
+      "name": "kelly",
       "position": {
-        "x": 1,
-        "y": 4,
-        "z": 1
+        "x": 4,
+        "y": 2,
+        "z": 4
       }
     }
-  },
+  ],
   "staging": [
     {
       "name": "wall",
